@@ -15,7 +15,7 @@ public class LoginPage {
     public WebDriver driver;
     public SoftAssert softAssert;
 
-    public LoginPage(WebDriver driver, SoftAssert softAssert){
+    public LoginPage(WebDriver driver, SoftAssert softAssert) {
         this.driver = driver;
         this.softAssert = softAssert;
         PageFactory.initElements(driver, this);
@@ -34,7 +34,7 @@ public class LoginPage {
     @FindBy(xpath = "//label[@for='username']")
     private WebElement userNameLabel;
 
-    @FindBy(xpath ="//label[@for='password']")
+    @FindBy(xpath = "//label[@for='password']")
     private WebElement passwordLabel;
 
     @FindBy(xpath = "//label[@for='sessionLocation']")
@@ -53,8 +53,7 @@ public class LoginPage {
     private WebElement togglePassword;
 
 
-
-    public void login(){
+    public void login() {
         softAssert.assertTrue(userName.isEnabled());
         softAssert.assertTrue(password.isEnabled());
         softAssert.assertTrue(loginBtn.isEnabled());
@@ -70,13 +69,6 @@ public class LoginPage {
         loginBtn.click();
 
     }
-
-
-
-
-
-
-
 
 
 }

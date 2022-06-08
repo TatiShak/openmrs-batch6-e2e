@@ -13,13 +13,14 @@ import java.time.Duration;
 public class Driver {
     private static WebDriver driver;
 
-    private Driver(){}
+    private Driver() {
+    }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 
         String browser = ConfigReader.getProperty("browser").toLowerCase();
 
-        switch (browser){
+        switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
@@ -38,11 +39,11 @@ public class Driver {
                 break;
         }
 
-        if (driver != null){
+        if (driver != null) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicitWait"))));
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds( Long.parseLong(ConfigReader.getProperty("pageLoadTime"))));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("pageLoadTime"))));
             return driver;
         }
-        throw  new RuntimeException("Be smart, put right browser name!!");
+        throw new RuntimeException("Be smart, put right browser name!!");
     }
 }

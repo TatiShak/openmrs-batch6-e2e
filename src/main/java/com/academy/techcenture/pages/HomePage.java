@@ -12,7 +12,7 @@ public class HomePage {
     public WebDriver driver;
     public SoftAssert softAssert;
 
-    public HomePage(WebDriver driver, SoftAssert softAssert){
+    public HomePage(WebDriver driver, SoftAssert softAssert) {
         this.driver = driver;
         this.softAssert = softAssert;
         PageFactory.initElements(driver, this);
@@ -44,6 +44,7 @@ public class HomePage {
             softAssert.assertEquals(this.tabs.get(i).getText().trim(), tabsArray[i]);
         }
     }
+
     private void verifyingHomePage() {
         softAssert.assertEquals(driver.getTitle(), "Home");
         softAssert.assertEquals(adminLoginBtn.getText().trim(), "admin");
@@ -53,13 +54,12 @@ public class HomePage {
 
     }
 
-    public void clickOnRegisterPatientTab(){
+    public void clickOnRegisterPatientTab() {
         verifyHomePageTabs();
         verifyingHomePage();
         softAssert.assertTrue(registerAPatientBtn.isEnabled());
         registerAPatientBtn.click();
     }
-
 
 
 }

@@ -11,7 +11,8 @@ public class ConfigReader {
     //constant - final and static
     private static final String CONFIG_FILE_PATH = "src/main/resources/config.properties";
 
-    private ConfigReader(){}
+    private ConfigReader() {
+    }
 
     static {
         System.out.println("TEAM 1 is so smart!");
@@ -20,12 +21,12 @@ public class ConfigReader {
             properties = new Properties();
             properties.load(inputStream);
             inputStream.close();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
-    public static String getProperty(String keyName){
+    public static String getProperty(String keyName) {
         return properties.getProperty(keyName);
     }
 
