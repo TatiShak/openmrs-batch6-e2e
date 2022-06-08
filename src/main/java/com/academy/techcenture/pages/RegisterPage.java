@@ -166,16 +166,15 @@ public class RegisterPage {
         nextBtn.click();
 
         String birthdate = patientData.get("birthdate");
-        String[] splitBD = birthdate.split(" ");
+        String[] splitBD = birthdate.split("/");
         String birthdateDay = splitBD[1];
         String birthdateMonth = splitBD[0];
         String birthdateYear = splitBD[2];
-        select = new Select(birthDateDayInput);
-        select.selectByValue(birthdateDay);
+
+        birthDateDayInput.sendKeys(birthdateDay);
         select = new Select(birthDateMonthInput);
-        select.selectByValue(birthdateMonth);
-        select = new Select(birthDateYearInput);
-        select.selectByValue(birthdateYear);
+        select.selectByVisibleText(birthdateMonth);
+        birthDateYearInput.sendKeys(birthdateYear);
         softAssert.assertTrue(nextBtn.isDisplayed());
         nextBtn.click();
 
