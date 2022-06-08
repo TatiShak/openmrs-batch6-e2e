@@ -2,6 +2,7 @@ package com.academy.techcenture.e2e;
 
 import com.academy.techcenture.config.ConfigReader;
 import com.academy.techcenture.config.Driver;
+import com.academy.techcenture.pages.HomePage;
 import com.academy.techcenture.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -24,8 +25,13 @@ public class OpenMrsPatientRegistrationE2ETest {
     @Test
     public void patientRegisterPositive(){
         LoginPage loginPage = new LoginPage(driver,softAssert);
+        HomePage homePage = new HomePage(driver, softAssert);
         loginPage.login();
+        homePage.clickOnRegisterPatientTab();
+
+
 
     }
+
 
 }
