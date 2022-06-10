@@ -63,16 +63,13 @@ public class RegisterPage {
     @FindBy(xpath = "//option[@value='F']")
     private WebElement genderFemale;
 
-    @FindBy(xpath = "//label[contains(.,\'What's the patient's birth date\')]")
-    private WebElement birthDateLabel;
-
-    @FindBy(xpath = "label[for='birthdateDay-field']")
+    @FindBy(xpath = "//label[@for='birthdateDay-field']")
     private WebElement birthDateDayLabel;
 
-    @FindBy(xpath = "label[for=birthdateMonth-field']")
+    @FindBy(xpath = "//label[@for='birthdateMonth-field']")
     private WebElement birthDateMonthLabel;
 
-    @FindBy(xpath = "label[for=birthdateYear-field']")
+    @FindBy(xpath = "//label[@for='birthdateYear-field']")
     private WebElement birthDateYearLabel;
 
     @FindBy(id = "birthdateDay-field")
@@ -138,7 +135,7 @@ public class RegisterPage {
     @FindBy(id = "cancelSubmission")
     private WebElement cancelBtn;
 
-    public void register(Map<String,String> patientData) {
+    public void register(Map<String, String> patientData) {
         //Name
         softAssert.assertTrue(homeIconBtn.isEnabled());
         softAssert.assertTrue(registerPatientHeader.isDisplayed());
@@ -168,7 +165,7 @@ public class RegisterPage {
         }
         nextBtn.click();
 //Birthdate
-        softAssert.assertTrue(birthDateLabel.isDisplayed());
+
         softAssert.assertTrue(birthDateDayLabel.isDisplayed());
         softAssert.assertTrue(birthDateMonthLabel.isDisplayed());
         softAssert.assertTrue(birthDateYearLabel.isDisplayed());
@@ -222,6 +219,7 @@ public class RegisterPage {
         //String[] nameValue = String.valueOf(confirmList.indexOf(0)).split(":");
         verifyConfirm(patientData);
     }
+
     private void verifyConfirm(Map<String, String> patientData) {
         softAssert.assertTrue(cancelBtn.isEnabled());
         softAssert.assertEquals(confirmList.size(), 6);

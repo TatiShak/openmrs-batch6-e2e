@@ -37,7 +37,8 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='apps']/a")
     private List<WebElement> tabs;
     String[] tabsArray = {"Find Patient Record", "Active Visits", "Register a Patient", "Capture Vitals",
-            "Appointment Scheduling", "Reports", "Data Management", "Configure Metadata", "System Administration"};
+            "Appointment Scheduling", "Register a Patient", "Reports", "Data Management", "Configure Metadata", "System Administration"};
+
 
     private void verifyHomePageTabs() {
         for (int i = 0; i < this.tabs.size(); i++) {
