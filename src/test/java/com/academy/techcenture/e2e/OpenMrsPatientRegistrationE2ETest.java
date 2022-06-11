@@ -4,6 +4,7 @@ import com.academy.techcenture.config.ConfigReader;
 import com.academy.techcenture.config.Driver;
 import com.academy.techcenture.pages.HomePage;
 import com.academy.techcenture.pages.LoginPage;
+import com.academy.techcenture.pages.PatientDetailsPage;
 import com.academy.techcenture.pages.RegisterPage;
 import com.academy.techcenture.utils.ExcelReader;
 import org.openqa.selenium.WebDriver;
@@ -34,11 +35,13 @@ public class OpenMrsPatientRegistrationE2ETest {
         LoginPage loginPage = new LoginPage(driver,softAssert);
         HomePage homePage = new HomePage(driver, softAssert);
         RegisterPage registerPage = new RegisterPage(driver, softAssert);
+        PatientDetailsPage patientDetailsPage=new PatientDetailsPage(driver,softAssert);
         loginPage.login();
         homePage.clickOnRegisterPatientTab();
         registerPage.register(patientDetails);
+        patientDetailsPage.verifyPatientDetails(patientDetails);
 
-        softAssert.assertAll();
+      //  softAssert.assertAll();
 
     }
 

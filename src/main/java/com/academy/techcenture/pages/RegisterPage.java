@@ -146,7 +146,7 @@ public class RegisterPage {
         softAssert.assertTrue(unidentifiedPatientCheckBox.isEnabled());
         softAssert.assertTrue(nextBtn.isEnabled());
 
-        String firstName = patientData.get("givenName");
+        String firstName = patientData.get("givenName").trim();
         String middleName = patientData.get("middleName");
         String lastName = patientData.get("familyName");
         firstNameInput.sendKeys(firstName);
@@ -228,7 +228,7 @@ public class RegisterPage {
         String confirmName = nameArr[1];
         String expectedName = null;
         if (patientData.get("middleNameHas").equals("y")) {
-            expectedName = patientData.get("givenName") + ", " + patientData.get("middleName") + ", "
+            expectedName = " "+patientData.get("givenName") + ", " + patientData.get("middleName") + ", "
                     + patientData.get("familyName");
         } else
             expectedName = patientData.get("givenName") + ", " + patientData.get("familyName");
