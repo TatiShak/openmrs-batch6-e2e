@@ -35,8 +35,8 @@ public class PatientDetailsPage {
     @FindBy(xpath = "//div[@class='gender-age col-auto']")
     private WebElement genderAgeDob;
 
-    @FindBy(className = "float-sm-right")
-    private WebElement patientId;
+    @FindBy(xpath = "//div[@class='float-sm-right']//span")
+    public WebElement patientID;
 
     @FindBy(className = "icon-sticky-note")
     private WebElement stickyNote;
@@ -99,6 +99,29 @@ public class PatientDetailsPage {
         //int timeStamp = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime()));
         int age = Integer.parseInt(genderAgeDobList[2]);
         softAssert.assertEquals(age, patientData.get("currentAge"));
+
+        for (int i = 0; i < generalActionsList.size() ; i++) {
+            softAssert.assertEquals(generalActionsList.get(i).getText().trim(),generalActionsListArray[i]);
+        }
+
+        softAssert.assertTrue(stickyNote.isDisplayed());
+        stickyNote.click();
+        stickyNoteInput.sendKeys("Team 1 is done of this project!");
+        softAssert.assertTrue(okBtn.isDisplayed());
+        softAssert.assertTrue(removeBtn.isDisplayed());
+        okBtn.click();
+        softAssert.assertTrue(stickyNoteDisplayed.isDisplayed());
+
+
+
+
+        softAssert.assertTrue(patientID.isDisplayed());
+        String patientIDStr = patientID.getText();
+        patientData.put("patientId", patientIDStr);
+
+
+        softAssert.assertTrue(homeIconBtn.isEnabled());
+        homeIconBtn.click();
 
 
     }
