@@ -2,10 +2,7 @@ package com.academy.techcenture.e2e;
 
 import com.academy.techcenture.config.ConfigReader;
 import com.academy.techcenture.config.Driver;
-import com.academy.techcenture.pages.HomePage;
-import com.academy.techcenture.pages.LoginPage;
-import com.academy.techcenture.pages.PatientDetailsPage;
-import com.academy.techcenture.pages.RegisterPage;
+import com.academy.techcenture.pages.*;
 import com.academy.techcenture.utils.ExcelReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -31,17 +28,19 @@ public class OpenMrsPatientRegistrationE2ETest {
     }
 
     @Test(dataProvider = "newPatientData")
-    public void patientRegisterPositive(Map<String, String> patientDetails){
+    public void patientRegisterPositive(Map<String, String> patientData){
         LoginPage loginPage = new LoginPage(driver,softAssert);
         HomePage homePage = new HomePage(driver, softAssert);
         RegisterPage registerPage = new RegisterPage(driver, softAssert);
         PatientDetailsPage patientDetailsPage=new PatientDetailsPage(driver,softAssert);
+        FindPatientRecordPage findPatientRecordPage =new FindPatientRecordPage(driver,softAssert);
         loginPage.login();
         homePage.clickOnRegisterPatientTab();
-        registerPage.register(patientDetails);
-        patientDetailsPage.verifyPatientDetails(patientDetails);
+        registerPage.register(patientData);
+        patientDetailsPage.verifyPatientDetails(patientData);
+        findPatientRecordPage.verifyFindPatientRecordPage(patientData);
 
-      //  softAssert.assertAll();
+       softAssert.assertAll();
 
     }
 

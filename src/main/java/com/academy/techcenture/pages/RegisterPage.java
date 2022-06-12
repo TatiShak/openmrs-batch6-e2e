@@ -228,11 +228,11 @@ public class RegisterPage {
         String confirmName = nameArr[1];
         String expectedName = null;
         if (patientData.get("middleNameHas").equals("y")) {
-            expectedName = " "+patientData.get("givenName") + ", " + patientData.get("middleName") + ", "
+            expectedName = patientData.get("givenName") + ", " + patientData.get("middleName") + ", "
                     + patientData.get("familyName");
         } else
             expectedName = patientData.get("givenName") + ", " + patientData.get("familyName");
-        softAssert.assertEquals(confirmName, expectedName);
+        softAssert.assertEquals(confirmName.trim(), expectedName);
 
         softAssert.assertTrue(confirmBtn.isEnabled());
         confirmBtn.click();

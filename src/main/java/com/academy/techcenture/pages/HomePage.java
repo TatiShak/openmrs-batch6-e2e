@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomePage {
     public WebDriver driver;
@@ -37,12 +38,13 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='apps']/a")
     private List<WebElement> tabs;
     String[] tabsArray = {"Find Patient Record", "Active Visits","Awaiting Admission", "Register a patient", "Capture Vitals",
-            "Appointment Scheduling","Reports",   "Data Management", "Configure Metadata", "System Administration"};
+            "Appointment Scheduling", "Data Management", "Configure Metadata", "System Administration"};
 
 
     private void verifyHomePageTabs() {
-        for (int i = 0; i < this.tabs.size(); i++) {
-            softAssert.assertEquals(this.tabs.get(i).getText().trim(), tabsArray[i]);
+        List<String> collect = tabs.stream().map(t -> t.getText().trim()).collect(Collectors.toList()); //10 11
+        for (int i = 0; i < tabsArray.length; i++) {
+            softAssert.assertTrue(collect.contains(tabsArray[i]));
         }
     }
     private void verifyingHomePage() {
@@ -51,6 +53,7 @@ public class HomePage {
         softAssert.assertTrue(selectedLocationBtn.isDisplayed());
 
         softAssert.assertTrue(logOut.isDisplayed());
+
 
     }
 

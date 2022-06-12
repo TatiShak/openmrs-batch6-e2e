@@ -75,7 +75,7 @@ public class PatientDetailsPage {
     public void verifyPatientDetails(Map<String, String> patientData) {
 //9. You will land on the patient details page. Verify top sections like given middle and family name, gender, dob and patient id.
         softAssert.assertEquals(personGivenName.getText(), patientData.get("givenName"));
-        if (middleName.isDisplayed()) {
+        if (patientData.get("middleNameHas").equals("y")) {
             softAssert.assertEquals(middleName.getText(), patientData.get("middleName"));
         }
         softAssert.assertEquals(personFamilyName.getText(), patientData.get("familyName"));
@@ -98,7 +98,7 @@ public class PatientDetailsPage {
         //I did in Excel currentAge
         //int timeStamp = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime()));
         int age = Integer.parseInt(genderAgeDobList[2]);
-        softAssert.assertEquals(age, patientData.get("currentAge"));
+      softAssert.assertEquals(age,   Integer.parseInt(patientData.get("currentAge").substring(0,2)), "age did not match Patient details");
 
         for (int i = 0; i < generalActionsList.size() ; i++) {
             softAssert.assertEquals(generalActionsList.get(i).getText().trim(),generalActionsListArray[i]);
