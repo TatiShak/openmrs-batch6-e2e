@@ -37,14 +37,14 @@ public class HomePage {
 
     @FindBy(xpath = "//div[@id='apps']/a")
     private List<WebElement> tabs;
-    String[] tabsArray = {"Find Patient Record", "Active Visits","Awaiting Admission", "Register a patient", "Capture Vitals",
-            "Appointment Scheduling", "Data Management", "Configure Metadata", "System Administration"};
+    String[] tabsArray = {"Find Patient Record", "Active Visits","Register a patient", "Capture Vitals","Appointment Scheduling",
+            "Reports", "Data Management", "Configure Metadata", "System Administration"};
 
 
     private void verifyHomePageTabs() {
         List<String> collect = tabs.stream().map(t -> t.getText().trim()).collect(Collectors.toList()); //10 11
         for (int i = 0; i < tabsArray.length; i++) {
-            softAssert.assertTrue(collect.contains(tabsArray[i]));
+            softAssert.assertTrue(collect.contains(tabsArray[i]),"Home Page Tabs was changed again");
         }
     }
     private void verifyingHomePage() {

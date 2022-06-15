@@ -234,6 +234,32 @@ public class RegisterPage {
             expectedName = patientData.get("givenName") + ", " + patientData.get("familyName");
         softAssert.assertEquals(confirmName.trim(), expectedName);
 
+        String[] genderArr = confirmList.get(1).getText().trim().split(":");
+        String actualGender = genderArr[1].trim();
+        softAssert.assertEquals(actualGender,patientData.get("gender"));
+
+        String[] birthDateArr = confirmList.get(2).getText().trim().split(":");
+        String actualBirthDate = birthDateArr[1].trim();
+        String[] dateOnly = patientData.get("birthdate").split("/");
+        String expectedBirthDate = dateOnly[1]+", "+patientData.get("month")+", "+patientData.get("year").substring(0,4);
+        softAssert.assertEquals(actualBirthDate, expectedBirthDate);
+
+        String[] addressArr = confirmList.get(3).getText().trim().split(":");
+        String actualAddress = addressArr[1].trim();
+        if(!patientData.get("address2").equals("")) {
+            softAssert.assertEquals(actualAddress, patientData.get("address") + ", " + patientData.get("address2") + ", " + patientData.get("city") + ", " + patientData.get("state") + ", " + patientData.get("country") + ", " + patientData.get("postalcode"));
+        }else{
+            softAssert.assertEquals(actualAddress, patientData.get("address") + ", " + patientData.get("city") + ", " + patientData.get("state") + ", " + patientData.get("country") + ", " + patientData.get("postalcode"));
+        }
+        String[] phoneArr = confirmList.get(4).getText().trim().split(":");
+        String actualPhone = phoneArr[1].trim();
+        softAssert.assertEquals(actualPhone,patientData.get("phoneNumber"));
+
+        String[] relativeArr = confirmList.get(5).getText().trim().split(":");
+        String actualRelative = relativeArr[1].trim();
+        softAssert.assertEquals(actualRelative,patientData.get("personName")+" - "+patientData.get("relations"));
+
+
         softAssert.assertTrue(confirmBtn.isEnabled());
         confirmBtn.click();
 

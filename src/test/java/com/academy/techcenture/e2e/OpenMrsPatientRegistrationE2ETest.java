@@ -22,7 +22,7 @@ public class OpenMrsPatientRegistrationE2ETest {
     @BeforeMethod
     public void driverSetup(){
         driver = Driver.getDriver();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.get(ConfigReader.getProperty("URL"));
         softAssert = new SoftAssert();
     }
@@ -40,7 +40,7 @@ public class OpenMrsPatientRegistrationE2ETest {
         patientDetailsPage.verifyPatientDetails(patientData);
         findPatientRecordPage.verifyFindPatientRecordPage(patientData);
 
-       softAssert.assertAll();
+        softAssert.assertAll();
 
     }
 
